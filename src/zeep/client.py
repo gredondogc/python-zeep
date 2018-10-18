@@ -97,6 +97,7 @@ class Client(object):
         The default ServiceProxy instance (`self.service`) always referes to
         the first service/port in the wsdl Document.  Use this when a specific
         port is required.
+        :rtype:
 
         """
         if not self.wsdl.services:

@@ -115,8 +115,11 @@ class SoapMessage(ConcreteMessage):
             attributes = result._xsd_type.attributes
             if len(children) == 1 and len(attributes) == 0:
                 item_name, item_element = children[0]
-                retval = getattr(result, item_name)
-                return retval
+                try:
+                    retval = getattr(result, item_name)
+                    return retval
+                except Exception as e:
+                    return result
         return result
 
     def signature(self, as_output=False):

@@ -34,6 +34,11 @@ def as_qname(value, nsmap, target_namespace=None):
         if not local:
             return etree.QName(XSD, 'anyType')
 
+        # Workaround a idiotice do b1ws devolver <env:Value>env:-1013</env:Value>
+        # O -1013 dá erro.
+        if local[0] in "-0123456789":
+            return etree.QName(namespace, "_" + local)
+
         return etree.QName(namespace, local)
 
     if target_namespace:
